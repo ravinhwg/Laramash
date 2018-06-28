@@ -14,15 +14,15 @@ class Imgtable extends Migration
     {
         Schema::create('imgtable', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('photo');
-            $table->string('rank');
-            $table->string('votes');
-            $table->string('wiki_link');
-            $table->string('extra1');
-            $table->string('extra2');
-            $table->string('extra3');
-            $table->string('extra4');
+            $table->string('name')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('rank')->nullable();
+            $table->string('votes')->nullable();
+            $table->string('wiki_link')->nullable();
+            $table->string('extra1')->nullable();
+            $table->string('extra2')->nullable();
+            $table->string('extra3')->nullable();
+            $table->string('extra4')->nullable();
         });
     }
 
