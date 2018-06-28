@@ -23,7 +23,7 @@ class HomeController extends Controller
         
 
        
-
+        $count = DB::table('vote_table')->count();
       
         $key=true;
        while($key){
@@ -44,7 +44,7 @@ class HomeController extends Controller
        
        
 
-       return view('welcome', ['pic1' =>$pic1,'pic2'=> $pic2,'newgame'=>$newgame_id,]);
+       return view('welcome', ['pic1' =>$pic1,'pic2'=> $pic2,'newgame'=>$newgame_id,'count'=>$count]);
        
     }
 
@@ -56,7 +56,39 @@ class HomeController extends Controller
         DB::table('vote_table')->where('id','=',$war_id)->update(
             ['won' => $won_id, 'lost' => $lost_id]
         );
-        //cal the ranking
+        //calculate the ranking...
+        
+        $winner=DB::table('imgtable')->where('id',$won_id)->get();
+        $loser=DB::table('imgtable')->where('id',$lost_id)->get();
+        
+        foreach($winner as $win)
+        {
+            $set_score_winner=(int)$win->extra1;
+            $winnerscore=$set_score_winner +1;
+           
+
+
+        }
+        foreach($loser as $lose)
+        {
+            $set_score_loser=(int)$lose->extra1;
+            $loserscore=$set_score_loser -1;
+        }
+
+        DB::table('imgtable')->where('id','=',$won_id)->update(
+            ['extra1' => $winnerscore,]
+        );
+        DB::table('imgtable')->where('id','=',$lost_id)->update(
+            ['extra1' => $loserscore,]
+        );
         return back();
+    }
+
+    public function showRanks()
+    {
+        $users = DB::table('imgtable')
+                ->orderBy('extra1', 'desc')
+                ->get();
+                return view('ranks',['users'=>$users]);
     }
 }

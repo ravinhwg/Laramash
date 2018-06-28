@@ -17,3 +17,4 @@ Route::auth();
 
 Route::get('/', 'HomeController@index');
 Route::get('result/won/{won_id}/lost/{lost_id}/war/{war_id}','HomeController@vote');
+Route::get('/ranking','HomeController@showRanks');

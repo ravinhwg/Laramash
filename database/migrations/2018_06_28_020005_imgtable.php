@@ -19,7 +19,7 @@ class Imgtable extends Migration
             $table->string('rank')->nullable();
             $table->string('votes')->nullable();
             $table->string('wiki_link')->nullable();
-            $table->string('extra1')->nullable();
+            $table->integer('extra1')->nullable()->default(1000);
             $table->string('extra2')->nullable();
             $table->string('extra3')->nullable();
             $table->string('extra4')->nullable();

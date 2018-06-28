@@ -6,6 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
             <div class=" text-center">
+                {{$count}}
                 @foreach($pic1 as $pic)
                 @foreach($pic2 as $pics)
         <div class="row">
