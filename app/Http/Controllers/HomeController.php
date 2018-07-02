@@ -23,7 +23,10 @@ class HomeController extends Controller
         
 
        
-        $count = DB::table('vote_table')->count();
+        $count1 = DB::table('vote_table')->count();
+        $count2=DB::table('vote_table')->where('won','=',' ')->count();
+        $count=$count1-$count2;
+
       
         $key=true;
        while($key){
